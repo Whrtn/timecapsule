@@ -1,0 +1,7 @@
+{% extends 'capsules/base.html' %}
+{% block title %}Success - Capsule Created{% endblock %}
+{%  block content %}
+    {% csrf_token %}
+    <h1>Success!</h1>
+  <p>Secret code: {{ secret_code }}</p>
+{% endblock %}
