@@ -11,7 +11,7 @@ def create_capsule(request):
         form = MessageForm(request.POST)
         if form.is_valid():
             message = form.save()
-            return render(request, 'capsules/capsule_created.html', {'secret_code': message.secret_code})
+            return render(request, 'capsules/capsule_created.html', {'secret_code': message.secret_code, 'capsule_id': message.id})
     else:
         form = MessageForm()
     return render(request, 'capsules/create_capsule.html', {'form': form})
