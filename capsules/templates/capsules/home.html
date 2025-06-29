@@ -1,33 +1,48 @@
 {% extends 'capsules/base.html' %}
 {% block title %}Time Capsule - Home{% endblock %}
-{%  block content %}
-<div class="flex flex-col items-center justify-center space-y-4 p-6 bg-white rounded-lg w-full">
+{% block content %}
+<div class="flex flex-col items-center justify-center space-y-4 bg-white rounded-lg w-full">
 
-    <p class="text-lg font-semibold text-gray-800">Enter a Capsule ID</p>
-  
+  <p class="text-lg font-semibold text-gray-800">Enter a Capsule ID</p>
+
+  <form id="capsuleForm" class="w-full space-y-4">
     <input
       type="text"
       placeholder="Capsule ID"
-      class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      id="capsuleInput"
+      class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+      required
     />
-  
+
     <button
       type="submit"
       class="w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
-      >
+    >
       Go
     </button>
-    <div class="flex items-center w-full">
-        <hr class="flex-grow border-gray-300">
-        <span class="px-2 text-gray-500 text-sm">or</span>
-        <hr class="flex-grow border-gray-300">
-      </div>
-    <a
+  </form>
+
+  <div class="flex items-center w-full">
+    <hr class="flex-grow border-gray-300">
+    <span class="px-2 text-gray-500 text-sm">or</span>
+    <hr class="flex-grow border-gray-300">
+  </div>
+
+  <a
     href="{% url 'create_capsule' %}"
     class="w-full bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-500 transition text-center"
-    >
+  >
     Create a New Capsule
-  </a>  
-  </div>
-  
+  </a>
+</div>
+
+<script>
+  document.getElementById("capsuleForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const capsuleId = document.getElementById("capsuleInput").value;
+    if (capsuleId) {
+      window.location.href = "/capsule/" + capsuleId + "/";
+    }
+  });
+</script>
 {% endblock %}
