@@ -27,7 +27,7 @@ def view_capsule(request, capsule_id):
             return render(request, 'capsules/unlock_capsule.html', {'capsule_id': message.id})
         
         else:
-            return render(request, 'capsules/capsule_locked.html', {'capsule_id': message.id})
+            return render(request, 'capsules/capsule_locked.html', {'capsule_id': message.id, 'unlock_date': message.unlock_date})
         
     else:
         return render(request, 'capsules/home.html')

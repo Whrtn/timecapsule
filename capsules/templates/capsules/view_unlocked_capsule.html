@@ -1,6 +1,13 @@
 {% extends 'capsules/base.html' %}
 {% block title %}Time Capsule - View Capsule{% endblock %}
 {%  block content %}
-<p>View capsule</p>
-<p>{{ message }}</p>
+<div class="flex flex-col items-center justify-center space-y-4 p-6 bg-white rounded-lg w-full">
+<h1 class="text-xl font-semibold">View Capsule</h1>
+<p>Your message:</p>
+<p class="text-xl">{{ message }}</p>
+<a href="/"
+  class="w-full text-center mt-4 bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">
+  Back to Home
+</a>
+</div>
 {% endblock %}

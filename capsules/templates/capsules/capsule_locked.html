@@ -1,6 +1,12 @@
 {% extends 'capsules/base.html' %}
 {% block title %}Time Capsule - Capsule locked{% endblock %}
 {%  block content %}
-<p>Capsule locked</p>
-<p>{{ capsule_id }}</p>
+<div class="flex flex-col items-center justify-center space-y-4 p-6 bg-white rounded-lg w-full">
+<h1 class="text-xl font-semibold">Capsule locked</h1>
+<p>Capsule number {{ capsule_id }} is locked until {{ unlock_date }}</p>
+<a href="/"
+  class="w-full text-center mt-4 bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">
+  Back to Home
+</a>
+</div>
 {% endblock %}
