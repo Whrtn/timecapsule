@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 import uuid
 
 # Create your models here.
@@ -10,7 +11,6 @@ class Message(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def is_unlockable(self):
-        from django.utils import timezone
         return timezone.now() >= self.unlock_date
     
     def __str__(self):

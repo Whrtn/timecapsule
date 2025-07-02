@@ -5,15 +5,20 @@
 
   <h1 class="text-xl font-semibold">Enter a Capsule ID</h1>
 
-  <form id="capsuleForm" class="w-full space-y-4">
+  <form method="post" action="{% url 'home' %}" class="w-full space-y-4">
+    {% csrf_token %}
     <input
       type="text"
+      name="capsule_id"
       placeholder="Capsule ID"
-      id="capsuleInput"
+      value="{{ capsule_id }}"
       class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
       required
     />
-
+    {% if error %}
+      <p class="text-red-600 text-sm mt-1">{{ error }}</p>
+    {% endif %}
+    
     <button
       type="submit"
       class="w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
@@ -21,6 +26,7 @@
       Go
     </button>
   </form>
+  
 
   <div class="flex items-center w-full">
     <hr class="flex-grow border-gray-300">
@@ -35,14 +41,4 @@
     Create a New Capsule
   </a>
 </div>
-
-<script>
-  document.getElementById("capsuleForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    const capsuleId = document.getElementById("capsuleInput").value;
-    if (capsuleId) {
-      window.location.href = "/capsule/" + capsuleId + "/";
-    }
-  });
-</script>
 {% endblock %}

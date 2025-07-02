@@ -1,10 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Message
 from .forms import MessageForm
-from django.utils import timezone
+
+from django.shortcuts import render, redirect
 
 def home(request):
-    return render(request, 'capsules/home.html')
+    error = ""
+    capsule_id = ""
+
+    if request.method == "POST":
+        capsule_id = request.POST.get('capsule_id', '').strip()
+
+        if not capsule_id:
+            error = "Please enter a capsule ID."
+        elif not capsule_id.isdigit():
+            error = "Invalid capsule ID. Only numbers allowed, no spaces."
+        else:
+            return redirect('view_capsule', capsule_id=capsule_id)
+
+    return render(request, 'capsules/home.html', {'error': error, 'capsule_id': capsule_id})
 
 def create_capsule(request):
     if request.method == 'POST':
@@ -18,7 +32,11 @@ def create_capsule(request):
 
 def view_capsule(request, capsule_id):
     if request.method == 'GET':
-        message = get_object_or_404(Message, id=capsule_id)
+        try:
+            message = Message.objects.get(id=capsule_id)
+        except Message.DoesNotExist:
+            error = "Capsule ID not found. Please try again."
+            return render(request, 'capsules/home.html', {'error': error, 'capsule_id': capsule_id})
 
         if message.is_unlocked:
             return render(request, 'capsules/view_unlocked_capsule.html', {'message': message.content})
