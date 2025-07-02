@@ -4,8 +4,12 @@
 <div class="flex flex-col items-center justify-center space-y-4 p-6 bg-white rounded-lg w-full">
 <h1 class="text-xl font-semibold">Unlock Capsule {{ capsule_id }}</h1>
 <p>Enter Secret Code:</p>
-<form id="secretCodeForm" class="w-full space-y-4">
-<input class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500" type="text"/>
+<form method="post" class="w-full space-y-4">
+  {% csrf_token %}
+<input name="secret_code" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500" type="text"/>
+{% if error %} 
+      <p class="text-red-600 text-sm mt-1">{{ error }}</p>
+    {% endif %}
 <button
 type="submit"
 class="w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
