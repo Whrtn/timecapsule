@@ -1,0 +1,37 @@
+name: Playwright E2E Tests
+
+on:
+  push:
+    branches: [main, feature/playwright-e2e]
+  pull_request:
+    branches: [main, feature/playwright-e2e]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          playwright install --with-deps
+
+      - name: Run Django migrations
+        run: python manage.py migrate
+
+      - name: Start Django server
+        run: nohup python manage.py runserver 0.0.0.0:8000 &
+
+      - name: Wait for server to start
+        run: sleep 10
+
+      - name: Run Playwright tests
+        run: pytest playwright-tests/
