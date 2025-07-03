@@ -1,13 +1,13 @@
-# ⚽ Time Capsule Messages
+# 🕰️ Time Capsule Messages
 
 A small Django project where users can write messages to be unlocked at a future date.
 This was built as a personal project to practise working with Django models, views, and templates.
 
 ## Features
 
-🔹 **Create capsules with a custom message and set an unlock date**
-🔹 **Ability to seach for a capsule using the Capsule ID**
-🔹 **Generate a unique secret code to unlock the capsule**
+🔹 **Create capsules with a custom message and set an unlock date**<br>
+🔹 **Ability to seach for a capsule using the Capsule ID**<br>
+🔹 **Generate a unique secret code to unlock the capsule**<br>
 
 ## Tech Stack
 
