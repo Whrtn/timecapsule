@@ -6,5 +6,5 @@ def test_homepage_loads():
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         page.goto("http://localhost:8000/")
-        assert "Time Capsule - Home" in page.title()
+        assert "invalidtitle" in page.title()
         browser.close()
